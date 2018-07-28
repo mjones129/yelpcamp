@@ -10,14 +10,14 @@ var express = require("express"),
     methodOverride = require("method-override"),
     passport = require("passport"),
     LocalStrategy = require("passport-local")
-    
+
 var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index");
-//seedDB();    
-console.log(process.env.DATABASEURL);
-mongoose.connect(process.env.DATABASEURL, {useMongoClient: true});
-//mongoose.connect("mongodb://matt:Aiden@ds151963.mlab.com:51963/yelp_camp", {useMongoClient: true});
+//seedDB();
+var port = (process.env.PORT || 3000);
+// mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+mongoose.connect("mongodb://matt:Aiden@ds151963.mlab.com:51963/yelp_camp", { useNewUrlParser: true});
 
 mongoose.Promise = global.Promise;
 
@@ -51,6 +51,6 @@ app.set("view engine", "ejs");
 
 
 
-app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("all systems are nominal.");
+app.listen(port, function(){
+  console.log("Listening on port " + port);
 });
